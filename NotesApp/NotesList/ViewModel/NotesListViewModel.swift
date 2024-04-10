@@ -32,14 +32,16 @@ final class NotesListViewModel: NotesListViewModelProtocol {
                 description: "First note description",
                 date: Date(),
                 imageURL: nil,
-                image: nil
+                image: nil,
+                category: .finances
             ),
                 Note(
                 title: "First note",
                 description: "First note description",
                 date: Date(),
                 imageURL: nil,
-                image: nil
+                image: nil,
+                category: .travel
             )
             ]
         )

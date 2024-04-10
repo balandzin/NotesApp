@@ -9,8 +9,6 @@ import UIKit
 
 class NotesListViewController: UITableViewController {
     
-    
-    
     // MARK: - Properties
     var viewModel: NotesListViewModelProtocol?
     
@@ -53,7 +51,7 @@ class NotesListViewController: UITableViewController {
     }
     
     @objc private func addAction() {
-        let noteViewController = NoteViewController()        
+        let noteViewController = NoteViewController()
         navigationController?.pushViewController(noteViewController, animated: true)
     }
 }

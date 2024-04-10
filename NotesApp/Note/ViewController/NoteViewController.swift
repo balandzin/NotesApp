@@ -53,6 +53,10 @@ final class NoteViewController: UIViewController {
         
     }
     
+    @objc private func selectCategory() {
+        
+    }
+    
     @objc private func deleteAction() {
         
     }
@@ -60,11 +64,7 @@ final class NoteViewController: UIViewController {
     @objc private func addImage() {
         
     }
-    
-    
-    
-    
-    
+
     private func setupUI() {
         view.addSubview(attachmentImageView)
         view.addSubview(textView)
@@ -119,7 +119,12 @@ final class NoteViewController: UIViewController {
             target: self,
             action: #selector(deleteAction)
         )
-        setToolbarItems([trashButton], animated: true)
+        
+        let selectCategoryButton = UIBarButtonItem(title: "Select category", style: .done, target: self, action: #selector(selectCategory))
+        let addImageButton = UIBarButtonItem(title: "Add image", style: .done, target: self, action: #selector(addImage))
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace) // растягивающийся елемент
+        
+        setToolbarItems([trashButton, spacing, selectCategoryButton, spacing, addImageButton], animated: true)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(  // Кнопка save в navigationBar
             barButtonSystemItem: .save,
