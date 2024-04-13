@@ -19,7 +19,7 @@ final class NotePersistent {
         
     }
     
-    static func fetchAll() {
-        
+    static func fetchAll() -> [Note] {
+        return []
     }
 }

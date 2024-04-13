@@ -29,7 +29,8 @@ class NotesListViewController: UITableViewController {
     
     // MARK: - Private Methods
     private func getNotes() {
-        
+        let notes = NotePersistent.fetchAll()
+        print(notes)
     }
     
     private func setupTableView() {
@@ -104,7 +105,8 @@ extension NotesListViewController {
                 Note else { return }
         
         let noteViewController = NoteViewController()
-        noteViewController.set(note: note)
+        let viewModel = NoteViewModel(note: note)
+        noteViewController.viewModel = viewModel
         
         navigationController?.pushViewController(noteViewController, animated: true)
     }
