@@ -27,10 +27,13 @@ final class NoteViewModel: NoteViewModelProtocol {
     
     // MARK: - Methods
     func save(with text: String) {
+        let date = note?.date ?? Date()
+        let (title, description) = createTitleAndDescription(from: text)
+        
         let note = Note(
-            title: text,
-            description: "",
-            date: Date(),
+            title: title,
+            description: description,
+            date: date,
             imageURL: nil,
             category: .personal
         )
@@ -40,5 +43,21 @@ final class NoteViewModel: NoteViewModelProtocol {
     func delete() {
         guard let note else { return }
         NotePersistent.delete(note)
+    }
+    
+    // MARK: - Private Methods
+    private func createTitleAndDescription(from text: String) -> (String, String?) {
+        var description = text
+        
+        guard let index = description.firstIndex(where: {
+            $0 == "." || $0 == "?" || $0 == "!" || $0 == "\n"
+        }) else {
+            return (text, nil)
+        }
+        
+        let title = String(description[...index])
+        description.removeSubrange(...index)
+        
+        return (title, description)
     }
 }

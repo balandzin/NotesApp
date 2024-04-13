@@ -13,7 +13,6 @@
 		D37C953F2BC6831500739878 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D37C953E2BC6831500739878 /* Base */; };
 		D37C95472BC69F9300739878 /* SimpleNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95462BC69F9300739878 /* SimpleNoteTableViewCell.swift */; };
 		D37C95492BC69FB100739878 /* ImageNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95482BC69FB100739878 /* ImageNoteTableViewCell.swift */; };
-		D37C954C2BC6A3C300739878 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D37C954B2BC6A3C300739878 /* SnapKit */; };
 		D37C95502BC6ACE400739878 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C954F2BC6ACE400739878 /* Note.swift */; };
 		D37C95542BC6ADF700739878 /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95532BC6ADF700739878 /* NotesListViewModel.swift */; };
 		D37C95562BC6B91600739878 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95552BC6B91600739878 /* TableViewSection.swift */; };
@@ -24,6 +23,7 @@
 		D37C95652BCA715000739878 /* NoteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95632BCA715000739878 /* NoteEntity+CoreDataProperties.swift */; };
 		D37C95672BCA73B900739878 /* NotePersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95662BCA73B800739878 /* NotePersistent.swift */; };
 		D37C956A2BCA764B00739878 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C95692BCA764B00739878 /* NoteViewModel.swift */; };
+		D37C95702BCA7EDE00739878 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D37C956F2BCA7EDE00739878 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37C954C2BC6A3C300739878 /* SnapKit in Frameworks */,
+				D37C95702BCA7EDE00739878 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +188,7 @@
 			);
 			name = NotesApp;
 			packageProductDependencies = (
-				D37C954B2BC6A3C300739878 /* SnapKit */,
+				D37C956F2BCA7EDE00739878 /* SnapKit */,
 			);
 			productName = NotesApp;
 			productReference = D37C952F2BC6831400739878 /* NotesApp.app */;
@@ -219,7 +219,7 @@
 			);
 			mainGroup = D37C95262BC6831400739878;
 			packageReferences = (
-				D37C954A2BC6A3C300739878 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D37C956E2BCA7EDE00739878 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = D37C95302BC6831400739878 /* Products */;
 			projectDirPath = "";
@@ -481,7 +481,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D37C954A2BC6A3C300739878 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		D37C956E2BCA7EDE00739878 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -492,9 +492,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D37C954B2BC6A3C300739878 /* SnapKit */ = {
+		D37C956F2BCA7EDE00739878 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D37C954A2BC6A3C300739878 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = D37C956E2BCA7EDE00739878 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -16,10 +16,23 @@ final class NotesListViewModel: NotesListViewModelProtocol {
     
     init() {
         getNotes()
-        setMocks()
     }
     
     private func getNotes() {
+        let notes = NotePersistent.fetchAll()
+        
+        let groupedObjects = notes.reduce(into: [Date: [Note]]()) { result, note in
+            let date = Calendar.current.startOfDay(for: note.date)
+            result[date, default: []].append(note)
+        }
+        
+        let keys = groupedObjects.keys
+        keys.forEach { key in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "d MMM yyyy"
+            let stringDate = dateFormatter.string(from: key)
+            section.append(TableViewSection(title: stringDate, items: groupedObjects[key] ?? []))
+        }
         
     }
     
@@ -28,24 +41,23 @@ final class NotesListViewModel: NotesListViewModelProtocol {
             title: "10 Apr 2024",
             items: [
                 Note(
-                title: "First note",
-                description: "First note description",
-                date: Date(),
-                imageURL: nil,
-                image: nil,
-                category: .finances
-            ),
+                    title: "First note",
+                    description: "First note description",
+                    date: Date(),
+                    imageURL: nil,
+                    category: .finances
+                ),
                 Note(
-                title: "First note",
-                description: "First note description",
-                date: Date(),
-                imageURL: nil,
-                image: nil,
-                category: .travel
-            )
+                    title: "First note",
+                    description: "First note description",
+                    date: Date(),
+                    imageURL: nil,
+                    category: .travel
+                )
             ]
         )
         
         self.section = [section]
     }
 }
+
