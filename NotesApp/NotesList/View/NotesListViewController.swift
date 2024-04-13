@@ -28,6 +28,10 @@ class NotesListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
+    private func getNotes() {
+        
+    }
+    
     private func setupTableView() {
         tableView.register(
             SimpleNoteTableViewCell.self,
