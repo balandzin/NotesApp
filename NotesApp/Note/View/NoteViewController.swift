@@ -32,8 +32,15 @@ final class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textView.delegate = self
+        
         configure()
         setupUI()
+        
+        if viewModel?.text == "" {
+            let trashButton = toolbarItems?.first
+            trashButton?.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +85,7 @@ final class NoteViewController: UIViewController {
         view.backgroundColor = .white
         
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { // Если текст пустой - задаем границы textView
+                    
             textView.layer.borderColor = UIColor.lightGray.cgColor
             textView.layer.borderWidth = 1
         }
@@ -133,10 +141,24 @@ final class NoteViewController: UIViewController {
         
         setToolbarItems([trashButton, spacing, selectCategoryButton, spacing, addImageButton], animated: true)
         
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(  // Кнопка save в navigationBar
+//            barButtonSystemItem: .save,
+//            target: self,
+//            action: #selector(saveAction)
+//            
+//        )
+//        
+//        navigationItem.rightBarButtonItem = nil
+    }
+}
+
+extension NoteViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(  // Кнопка save в navigationBar
             barButtonSystemItem: .save,
             target: self,
             action: #selector(saveAction)
+            
         )
     }
 }
