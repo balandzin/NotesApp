@@ -87,6 +87,10 @@ extension NotesListViewController {
         viewModel?.section.count ?? 0
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        viewModel?.section[section].title
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.section[section].items.count ?? 0
     }

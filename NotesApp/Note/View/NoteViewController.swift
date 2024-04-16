@@ -14,7 +14,6 @@ final class NoteViewController: UIViewController {
     private let attachmentImageView: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = 10
-        view.image = UIImage(named: "mockImage")
         view.layer.masksToBounds = true // Не отображать те части изображения. которые выходят за рамки
         view.contentMode = .scaleAspectFill
         return view
@@ -33,6 +32,7 @@ final class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         setupUI()
     }
     
@@ -60,7 +60,7 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func deleteAction() {
-        
+        viewModel?.delete()
         navigationController?.popViewController(animated: true)
     }
     

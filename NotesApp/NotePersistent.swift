@@ -12,26 +12,29 @@ final class NotePersistent {
     private static let context = AppDelegate.persistentContainer.viewContext
     
     static func save(_ note: Note) {
+        var entity: NoteEntity?
         
-        guard let description = NSEntityDescription.entity(forEntityName: "NoteEntity", in: context) else { return }
-        
-        let entity = NoteEntity(entity: description, insertInto: context)
-        
-        entity.title = note.title
-        entity.text = note.description
-        entity.date = note.date
-        entity.imageUrl = note.imageURL
-        
-        do {
-            try context.save()
-            postNotification()
-        } catch let error {
-            debugPrint("CoreData error: \(error)")
+        if let ent = getEntity(for: note) {
+            entity = ent
+        } else {
+            guard let description = NSEntityDescription.entity(forEntityName: "NoteEntity", in: context) else { return }
+            
+            entity = NoteEntity(entity: description, insertInto: context)
         }
+        
+        entity?.title = note.title
+        entity?.text = note.description
+        entity?.date = note.date
+        entity?.imageUrl = note.imageURL
+        
+        saveContext()
     }
     
     static func delete(_ note: Note) {
-        postNotification()
+        guard let entity = getEntity(for: note) else { return }
+        context.delete(entity)
+        
+        saveContext()
     }
     
     static func fetchAll() -> [Note] {
@@ -62,5 +65,29 @@ final class NotePersistent {
     
     private static func postNotification() {
         NotificationCenter.default.post(name: NSNotification.Name("Update"), object: nil)
+    }
+    
+    private static func getEntity(for note: Note) -> NoteEntity? {
+        let request = NoteEntity.fetchRequest()
+        
+        let predicate = NSPredicate(format: "date = %@", note.date as NSDate)
+        request.predicate = predicate
+        
+        do {
+            let objects = try context.fetch(request)
+            return objects.first
+        } catch let error {
+            debugPrint("Fetch error: \(error)")
+            return nil
+        }
+    }
+    
+    private static func saveContext() {
+        do {
+            try context.save()
+            postNotification()
+        } catch let error {
+            debugPrint("CoreData error: \(error)")
+        }
     }
 }
