@@ -55,11 +55,13 @@ final class NoteViewController: UIViewController {
     }
     
     @objc private func saveAction() {
-        
+        viewModel?.save(with: textView.text)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func deleteAction() {
         
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func selectCategory() {
